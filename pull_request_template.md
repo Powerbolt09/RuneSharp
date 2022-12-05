@@ -1,9 +1,9 @@
-﻿## Issue
-<!-- Link the Issue associated with the work being submitted -->
+﻿## Description
+<!-- Link the issue associated with the work being submitted -->
+<!-- Every pull request MUST have a ticket to be a merge candidate. -->
 https://github.com/Powerbolt09/RuneSharp/issues/
 
-## Description
 <!-- Give a brief description of the submitted changes. -->
 
 ## Impact
-<!-- What impact will this changeset have on the project? -->
+<!-- What impact will these changes have on the project? -->
