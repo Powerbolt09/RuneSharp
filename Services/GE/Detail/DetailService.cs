@@ -19,7 +19,7 @@ namespace RuneSharp.Services.GE.Detail
         {
             return Get<DetailResponse>(
                 new QueryStringBuilder()
-                    .Add("category", id.ToString())
+                    .Add("category", id)
                     .ToString()
             );
         }
@@ -33,7 +33,7 @@ namespace RuneSharp.Services.GE.Detail
         {
             return await GetAsync<DetailResponse>(
                 new QueryStringBuilder()
-                    .Add("category", id.ToString())
+                    .Add("category", id)
                     .ToString()
             );
         }
