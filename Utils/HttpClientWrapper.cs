@@ -94,7 +94,7 @@ namespace RuneSharp.Utils
                 }
             }
 
-            throw new JsonSerializationException($"Response unmarshalling failed.\r\nContent: {(content == null ? "[NULL]" : content)}");
+            throw new JsonSerializationException($"Response unmarshalling failed.\r\nContent: {(content == null ? "[NULL]" : content.ToString())}");
         }
     }
 }
