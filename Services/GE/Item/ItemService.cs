@@ -24,9 +24,9 @@ namespace RuneSharp.Services.GE.Item
             {
                 return Get<ItemResponse>(
                     new QueryStringBuilder()
-                        .Add("category", categoryId.ToString())
+                        .Add("category", categoryId)
                         .Add("alpha", leadChar)
-                        .Add("page", page.ToString())
+                        .Add("page", page)
                         .ToString()
                 );
             }
@@ -82,7 +82,7 @@ namespace RuneSharp.Services.GE.Item
             {
                 return Get<ItemResponse>(
                     new QueryStringBuilder()
-                        .Add("category", categoryId.ToString())
+                        .Add("category", categoryId)
                         .Add("alpha", leadChar)
                         .ToString()
                 );
@@ -137,9 +137,9 @@ namespace RuneSharp.Services.GE.Item
             {
                 return await GetAsync<ItemResponse>(
                     new QueryStringBuilder()
-                        .Add("category", categoryId.ToString())
+                        .Add("category", categoryId)
                         .Add("alpha", leadChar)
-                        .Add("page", page.ToString())
+                        .Add("page", page)
                         .ToString()
                 );
             }
@@ -195,7 +195,7 @@ namespace RuneSharp.Services.GE.Item
             {
                 return await GetAsync<ItemResponse>(
                     new QueryStringBuilder()
-                        .Add("category", categoryId.ToString())
+                        .Add("category", categoryId)
                         .Add("alpha", leadChar)
                         .ToString()
                 );
