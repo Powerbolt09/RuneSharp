@@ -37,7 +37,7 @@ namespace RuneSharp.Utils
                 }
             }
 
-            throw new HttpRequestException($"{request.Method} {request.RequestUri} failed.", null, response.StatusCode);
+            throw new HttpRequestException($"Call \"{request.Method} {request.RequestUri}\" failed.", null, response.StatusCode);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace RuneSharp.Utils
                 }
             }
 
-            throw new HttpRequestException($"{request.Method} {request.RequestUri} failed.", null, response.StatusCode);
+            throw new HttpRequestException($"Call \"{request.Method} {request.RequestUri}\" failed.", null, response.StatusCode);
         }
 
         /// <summary>
