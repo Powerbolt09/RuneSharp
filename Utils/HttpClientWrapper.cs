@@ -1,12 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace RuneSharp.Utils
 {
@@ -22,18 +14,65 @@ namespace RuneSharp.Utils
             }
         }
 
+        /// <summary>
+        /// Executes an HTTP request, and deserializes the response to an object.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns>T</returns>
+        /// <exception cref="HttpRequestException"></exception>
         public T Send<T>(HttpRequestMessage request)
         {
-            return Unmarshall<T>(base.Send(request).Content);
+            HttpResponseMessage response = Send(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    return Unmarshall<T>(response.Content);
+                } 
+                catch (Exception ex)
+                {
+                    throw new HttpRequestException(ex.Message, ex, response.StatusCode);
+                }
+            }
+
+            throw new HttpRequestException($"Call \"{request.Method} {request.RequestUri}\" failed.", null, response.StatusCode);
         }
 
+        /// <summary>
+        /// Async. Executes an HTTP request, and deserializes the response to an object.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns>Asynchronous Task of T</returns>
+        /// <exception cref="HttpRequestException"></exception>
         public async Task<T> SendAsync<T>(HttpRequestMessage request)
         {
-            HttpResponseMessage response = await base.SendAsync(request);
+            HttpResponseMessage response = await SendAsync(request);
 
-            return Unmarshall<T>(response.Content);
+            if (response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    return Unmarshall<T>(response.Content);
+                }
+                catch (Exception ex)
+                {
+                    throw new HttpRequestException(ex.Message, ex, response.StatusCode);
+                }
+            }
+
+            throw new HttpRequestException($"Call \"{request.Method} {request.RequestUri}\" failed.", null, response.StatusCode);
         }
 
+        /// <summary>
+        /// Deserializes response stream to object.
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="content">Response</param>
+        /// <returns>T</returns>
+        /// <exception cref="JsonSerializationException"></exception>
         private T Unmarshall<T>(HttpContent content)
         {
             if (content != null)
@@ -44,21 +83,18 @@ namespace RuneSharp.Utils
 
                     if (!string.IsNullOrWhiteSpace(json))
                     {
-                        try
+                        T? result = JsonConvert.DeserializeObject<T>(json);
+
+                        if (result != null)
                         {
                             // Successful parse. Return populated class object.
-                            return JsonConvert.DeserializeObject<T>(json);
-                        }
-                        catch (Exception ex)
-                        {
-                            // Log exception to console.
-                            Console.WriteLine(ex.Message);
+                            return result;
                         }
                     }
                 }
             }
 
-            return default;
+            throw new JsonSerializationException($"Response unmarshalling failed.\r\nContent: {(content == null ? "[NULL]" : content.ToString())}");
         }
     }
 }
