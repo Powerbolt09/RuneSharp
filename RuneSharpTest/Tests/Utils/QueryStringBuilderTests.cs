@@ -5,7 +5,7 @@ namespace RuneSharpTest.Tests.Utils
     public class QueryStringBuilderTests
     {
         [Fact]
-        void Add()
+        void Add_NewKey()
         {
             QueryStringBuilder sb = new QueryStringBuilder();
 
@@ -27,7 +27,7 @@ namespace RuneSharpTest.Tests.Utils
         }
 
         [Fact]
-        void Remove()
+        void Remove_ExistingKey()
         {
             QueryStringBuilder sb = new QueryStringBuilder();
 
