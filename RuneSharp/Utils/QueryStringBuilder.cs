@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace RuneSharp.Utils
 {
@@ -45,8 +41,8 @@ namespace RuneSharp.Utils
         /// <summary>
         /// Remove a parameter from the dictionary.
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="key">Parameter name</param>
+        /// <returns>QueryStringBuilder</returns>
         public QueryStringBuilder Remove(string key)
         {
             if (_query.ContainsKey(key))

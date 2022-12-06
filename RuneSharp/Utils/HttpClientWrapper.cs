@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace RuneSharp.Utils
 {
-    public sealed class HttpClientWrapper : HttpClient
+    internal class HttpClientWrapper : HttpClient
     {
         private static readonly HttpClientWrapper _http = new HttpClientWrapper();
 
@@ -12,6 +13,21 @@ namespace RuneSharp.Utils
             {
                 return _http;
             }
+        }
+
+        /// <summary>
+        /// Create new, default, HttpClientWrapper object.
+        /// </summary>
+        public HttpClientWrapper()
+        {
+        }
+
+        /// <summary>
+        /// Create a new HttpClientWrapper with HttpMessageHandler object.
+        /// </summary>
+        /// <param name="handler">HttpMessageHandler</param>
+        public HttpClientWrapper(HttpMessageHandler handler) : base(handler)
+        {
         }
 
         /// <summary>
@@ -73,7 +89,7 @@ namespace RuneSharp.Utils
         /// <param name="content">Response</param>
         /// <returns>T</returns>
         /// <exception cref="JsonSerializationException"></exception>
-        private T Unmarshall<T>(HttpContent content)
+        internal T Unmarshall<T>(HttpContent content)
         {
             if (content != null)
             {
@@ -87,14 +103,13 @@ namespace RuneSharp.Utils
 
                         if (result != null)
                         {
-                            // Successful parse. Return populated class object.
                             return result;
                         }
                     }
                 }
             }
 
-            throw new JsonSerializationException($"Response unmarshalling failed.\r\nContent: {(content == null ? "[NULL]" : content.ToString())}");
+            throw new JsonSerializationException("Error unmarshalling content from stream.");
         }
     }
 }
