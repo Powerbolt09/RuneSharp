@@ -25,4 +25,9 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+	<InternalsVisibleTo Include="RuneSharpTest" />
+  </ItemGroup>
+
+
 </Project>
