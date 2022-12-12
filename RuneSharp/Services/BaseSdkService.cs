@@ -5,7 +5,7 @@ namespace RuneSharp.Services
 {
     public class BaseSdkService
     {
-        protected UriBuilder _uriBuilder;
+        protected internal UriBuilder _uriBuilder;
 
         protected BaseSdkService(string api, string catalogue)
         {
