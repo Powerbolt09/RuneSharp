@@ -10,7 +10,7 @@ namespace RuneSharp.Bestiary.Models
     public class BeastSearch
     {
         [JsonProperty("label")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty("value")]
         public int Id { get; set; }

@@ -14,16 +14,16 @@ namespace RuneSharp.Bestiary.Models
         public int Level { get; set; }
 
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [JsonProperty("areas")]
-        public List<string> Areas { get; set; }
+        public List<string> Areas { get; set; } = new List<string>();
 
         [JsonProperty("poisonous")]
         public bool Poisonous { get; set; }
 
         [JsonProperty("weakness")]
-        public string Weakness { get; set; }
+        public string? Weakness { get; set; }
 
         [JsonProperty("size")]
         public int Size { get; set; }
@@ -38,19 +38,19 @@ namespace RuneSharp.Bestiary.Models
         public bool Members { get; set; }
 
         [JsonProperty("animations")]
-        public BeastDataAnimation Animations { get; set; }
+        public BeastDataAnimation? Animations { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty("xp")]
-        public string Experience { get; set; }
+        public string? Experience { get; set; }
 
         [JsonProperty("slayerlevel")]
         public int SlayerLevel { get; set; }
 
         [JsonProperty("slayercat")]
-        public string SlayerCategory { get; set; }
+        public string? SlayerCategory { get; set; }
 
         [JsonProperty("lifepoints")]
         public int Lifepoints { get; set; }
