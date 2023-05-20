@@ -10,7 +10,7 @@ namespace RuneSharp.GE.Models
     public class Category
     {
         [JsonProperty("letter")]
-        public string Letter { get; set; }
+        public string? Letter { get; set; }
 
         [JsonProperty("items")]
         public int Items { get; set; }

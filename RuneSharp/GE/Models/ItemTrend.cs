@@ -10,9 +10,9 @@ namespace RuneSharp.GE.Models
     public class ItemTrend
     {
         [JsonProperty("trend")]
-        public string Trend { get; set; }
+        public string? Trend { get; set; }
 
         [JsonProperty("change")]
-        public string Change { get; set; }
+        public string? Change { get; set; }
     }
 }
